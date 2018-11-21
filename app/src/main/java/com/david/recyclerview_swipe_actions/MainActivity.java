@@ -1,5 +1,6 @@
 package com.david.recyclerview_swipe_actions;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,7 +13,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SwipeController.IActionsCallBack {
 
     public static final int BT_1_ID = 1;
     public static final int BT_2_ID = 2;
@@ -41,24 +42,11 @@ public class MainActivity extends AppCompatActivity {
     private void setupRecyclerView() {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager((Context) this, LinearLayoutManager.VERTICAL, false));
 
         recyclerView.setAdapter(new MyAdapter(mItems));
 
-        mSwipeController = new SwipeController(this, SwipeController.BUTTON_WIDTH_NORMAL, new SwipeController.SwipeControllerActions() {
-            @Override
-            public void onActionsClicked(int actionsId, int adapterPosition) {
-                if (actionsId == BT_1_ID) {
-                    Toast.makeText(MainActivity.this, "share: element #" + (int) mItems.get(adapterPosition), Toast.LENGTH_SHORT).show();
-                }
-                if (actionsId == BT_2_ID) {
-                    Toast.makeText(MainActivity.this, "delete: element #" + (int) mItems.get(adapterPosition), Toast.LENGTH_SHORT).show();
-                }
-                if (actionsId == BT_3_ID) {
-                    Toast.makeText(MainActivity.this, "comment: element #+ " + (int) mItems.get(adapterPosition), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        mSwipeController = new SwipeController((Context) this, SwipeController.BUTTON_WIDTH_NORMAL, (SwipeController.IActionsCallBack) this);
 
         ArrayList<SwipeController.Button> buttons = new ArrayList<>();
         buttons.add(new SwipeController.Button(BT_1_ID, getResources().getDrawable(R.drawable.vector_share), SwipeController.Button.ICON_SIZE_NORMAL, 0x88B0BBBB));
@@ -76,5 +64,18 @@ public class MainActivity extends AppCompatActivity {
                 mSwipeController.onDraw(c);
             }
         });
+    }
+
+    @Override
+    public void onActionsClicked(int actionsId, int adapterPosition) {
+        if (actionsId == BT_1_ID) {
+            Toast.makeText(MainActivity.this, "share: element #" + (int) mItems.get(adapterPosition), Toast.LENGTH_SHORT).show();
+        }
+        if (actionsId == BT_2_ID) {
+            Toast.makeText(MainActivity.this, "delete: element #" + (int) mItems.get(adapterPosition), Toast.LENGTH_SHORT).show();
+        }
+        if (actionsId == BT_3_ID) {
+            Toast.makeText(MainActivity.this, "comment: element #+ " + (int) mItems.get(adapterPosition), Toast.LENGTH_SHORT).show();
+        }
     }
 }

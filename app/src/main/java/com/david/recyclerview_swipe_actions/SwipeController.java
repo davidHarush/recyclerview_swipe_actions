@@ -31,13 +31,13 @@ public class SwipeController extends Callback {
     private int buttonShowedState = BUTTONS_STATE_GONE;
     private RectF buttonInstance = null;
     private RecyclerView.ViewHolder currentItemViewHolder = null;
-    private SwipeControllerActions buttonsActions = null;
+    private IActionsCallBack buttonsActions = null;
     private ArrayList<Button> mRightButtons;
     private float mButtonWidth;
     private float edgesOfButtons;
     private Context mContext;
 
-    public SwipeController(Context context, int mButtonWidth, SwipeControllerActions buttonsActions) {
+    public SwipeController(Context context, int mButtonWidth, IActionsCallBack buttonsActions) {
         this.mButtonWidth = mButtonWidth;
         this.buttonsActions = buttonsActions;
         this.mContext = context;
@@ -297,7 +297,7 @@ public class SwipeController extends Callback {
         }
     }
 
-    public interface SwipeControllerActions {
+    public interface IActionsCallBack {
         void onActionsClicked(int actionsId, int adapterPosition);
     }
 
