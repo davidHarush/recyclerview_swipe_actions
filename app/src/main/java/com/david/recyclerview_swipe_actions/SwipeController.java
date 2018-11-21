@@ -22,7 +22,6 @@ public class SwipeController extends Callback {
 
     private static final int BUTTONS_STATE_GONE = 0;
     private static final int BUTTONS_STATE_RIGHT_VISIBLE = 1;
-    //    private static final int BUTTONS_STATE_LEFT_VISIBLE = 2;
     public static final int BUTTON_WIDTH_BIG = 320;
     public static final int BUTTON_WIDTH_NORMAL = 230;
     public static final int BUTTON_WIDTH_SMALL = 150;
@@ -76,9 +75,6 @@ public class SwipeController extends Callback {
                 if (buttonShowedState == BUTTONS_STATE_RIGHT_VISIBLE) {
                     dX = Math.min(dX, -edgesOfButtons);
                 }
-//                else if (buttonShowedState == BUTTONS_STATE_LEFT_VISIBLE){
-//                    dX = Math.min(dX, edgesOfButtons);
-//                }
 
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
             } else {
@@ -102,10 +98,6 @@ public class SwipeController extends Callback {
                     if (dX < -edgesOfButtons) {
                         buttonShowedState = BUTTONS_STATE_RIGHT_VISIBLE;
                     }
-//                    else if (dX > edgesOfButtons){
-//                        buttonShowedState = BUTTONS_STATE_LEFT_VISIBLE;
-//                    }
-
 
                     if (buttonShowedState != BUTTONS_STATE_GONE) {
                         setTouchDownListener(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
@@ -233,9 +225,6 @@ public class SwipeController extends Callback {
             lastLeft = (int) (lastLeft + mButtonWidth);
             lastRight = lastLeft + buttonMargin;
 
-//            lastRight = lastLeft - buttonMargin;
-//            lastLeft = (int) (lastLeft - mButtonWidth);
-
             p.setColor(mRightButtons.get(i).backgroundColor);
             c.drawRoundRect(rectButton, corners, corners, p);
             mRightButtons.get(i).buttonPosition = rectButton;
@@ -278,11 +267,7 @@ public class SwipeController extends Callback {
 
     public void onDraw(Canvas c) {
         if (currentItemViewHolder != null) {
-//            if(buttonShowedState == BUTTONS_STATE_RIGHT_VISIBLE) {
             drawRightButtons(c, currentItemViewHolder);
-//            }else{
-//                drawLeftButtons(c, currentItemViewHolder);
-//            }
         }
     }
 

@@ -61,13 +61,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ArrayList<SwipeController.Button> buttons = new ArrayList<>();
-
         buttons.add(new SwipeController.Button(BT_1_ID, getResources().getDrawable(R.drawable.vector_share), SwipeController.Button.ICON_SIZE_NORMAL, 0x88B0BBBB));
         buttons.add(new SwipeController.Button(BT_2_ID, getResources().getDrawable(R.drawable.vector_delete), SwipeController.Button.ICON_SIZE_NORMAL, 0x88BBBBB0));
         buttons.add(new SwipeController.Button(BT_3_ID, getResources().getDrawable(R.drawable.vector_comment), SwipeController.Button.ICON_SIZE_NORMAL, 0x88BBB0BB));
-
-
         mSwipeController.setButton(buttons);
+
+
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(mSwipeController);
         itemTouchhelper.attachToRecyclerView(recyclerView);
 
