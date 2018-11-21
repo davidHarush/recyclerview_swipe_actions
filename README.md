@@ -54,3 +54,7 @@ Code example:
 
 
 <img style="border: 1px solid black;float:left;" src="https://github.com/davidHarush/recyclerview_swipe_actions/blob/master/Screenshot_1.png" width="168" height="auto" hspace="30" />
+
+<br/>
+<br/>
+Base on https://github.com/FanFataL/swipe-controller-demo
