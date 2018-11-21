@@ -6,21 +6,15 @@ Code example:
 
 
 ```
- SwipeController mSwipeController = new SwipeController(this, SwipeController.BUTTON_WIDTH_NORMAL, new SwipeController.SwipeControllerActions() {
-            @Override
-            public void onActionsClicked(int actionsId, int adapterPosition) {
-                if (actionsId == BT_1_ID) {
-                    Toast.makeText(MainActivity.this, "share: element #" + (int) mItems.get(adapterPosition), Toast.LENGTH_SHORT).show();
-                }
-                if (actionsId == BT_2_ID) {
-                    Toast.makeText(MainActivity.this, "delete: element #" + (int) mItems.get(adapterPosition), Toast.LENGTH_SHORT).show();
-                }
-                if (actionsId == BT_3_ID) {
-                    Toast.makeText(MainActivity.this, "comment: element #+ " + (int) mItems.get(adapterPosition), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        
+  private void setupRecyclerView() {
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager((Context) this, LinearLayoutManager.VERTICAL, false));
+
+        recyclerView.setAdapter(new MyAdapter(mItems));
+
+        SwipeController SwipeController = new SwipeController((Context) this, SwipeController.BUTTON_WIDTH_NORMAL, (SwipeController.IActionsCallBack) this);
+
         ArrayList<SwipeController.Button> buttons = new ArrayList<>();
         buttons.add(new SwipeController.Button(BT_1_ID, getResources().getDrawable(R.drawable.vector_share), SwipeController.Button.ICON_SIZE_NORMAL, 0x88B0BBBB));
         buttons.add(new SwipeController.Button(BT_2_ID, getResources().getDrawable(R.drawable.vector_delete), SwipeController.Button.ICON_SIZE_NORMAL, 0x88BBBBB0));
@@ -30,13 +24,29 @@ Code example:
 
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(mSwipeController);
         itemTouchhelper.attachToRecyclerView(recyclerView);
-         recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+
+        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
             public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
                 mSwipeController.onDraw(c);
             }
         });
-        
+    }
+
+```
+```
+    @Override
+    public void onActionsClicked(int actionsId, int adapterPosition) {
+        if (actionsId == BT_1_ID) {
+            Toast.makeText(MainActivity.this, "share: element #" + (int) mItems.get(adapterPosition), Toast.LENGTH_SHORT).show();
+        }
+        if (actionsId == BT_2_ID) {
+            Toast.makeText(MainActivity.this, "delete: element #" + (int) mItems.get(adapterPosition), Toast.LENGTH_SHORT).show();
+        }
+        if (actionsId == BT_3_ID) {
+            Toast.makeText(MainActivity.this, "comment: element # " + (int) mItems.get(adapterPosition), Toast.LENGTH_SHORT).show();
+        }
+    }
 ```
 
 
