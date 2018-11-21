@@ -14,7 +14,6 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-import static android.support.v7.widget.helper.ItemTouchHelper.*;
 import static android.support.v7.widget.helper.ItemTouchHelper.ACTION_STATE_SWIPE;
 import static android.support.v7.widget.helper.ItemTouchHelper.LEFT;
 import static android.support.v7.widget.helper.ItemTouchHelper.RIGHT;
