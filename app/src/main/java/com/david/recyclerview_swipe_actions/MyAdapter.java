@@ -9,13 +9,13 @@ import android.widget.TextView;
 
 import java.util.List;
 
-class MyAdapter extends RecyclerView.Adapter<MyAdapter.PlayerViewHolder> {
+class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public List<Integer> mItems;
 
-    public class PlayerViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView text, pow;
 
-        public PlayerViewHolder(View view) {
+        public MyViewHolder(View view) {
             super(view);
             text = (TextView) view.findViewById(R.id.name);
             pow = (TextView) view.findViewById(R.id.nationality);
@@ -27,15 +27,15 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.PlayerViewHolder> {
     }
 
     @Override
-    public PlayerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_view_item, parent, false);
 
-        return new PlayerViewHolder(itemView);
+        return new MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(PlayerViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, int position) {
 
         int item = mItems.get(position);
         holder.text.setText("Element #" + item);

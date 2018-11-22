@@ -277,7 +277,7 @@ public class SwipeController extends Callback {
 
     }
 
-    static class Button {
+    public static class Button {
 
         public static final float ICON_SIZE_BIG = (float) 2.5;
         public static final float ICON_SIZE_NORMAL = (float) 4.5;
